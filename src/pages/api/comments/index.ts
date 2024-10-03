@@ -24,7 +24,10 @@ export const POST: APIRoute = async ({ request, redirect }) => {
       createdAt: Timestamp.now()
     });
     const referer = request.headers.get("referer") || '/';  // Fallback to root if Referer is missing
-    return Response.redirect(`${referer}#footer`, 303);
+    return new Response(null, {
+      status: 300,
+      headers: { Location: `${referer}#footer`},
+    })
   } catch (error) {
     return new Response("Something went wrong", {
       status: 500,
