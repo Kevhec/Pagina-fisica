@@ -26,6 +26,8 @@ const comments = commentsSnapshot.docs.length > 0 ? commentsSnapshot.docs.map((d
 	createdAt: doc.data()?.createdAt?.toDate(),
 })) as Comment[] : [];
 
+console.log(comments)
+
 const { title, arrow } = Astro.props;
 ---
 

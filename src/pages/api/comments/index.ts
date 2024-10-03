@@ -25,7 +25,7 @@ export const POST: APIRoute = async ({ request, redirect }) => {
     });
     const referer = request.headers.get("referer") || '/';  // Fallback to root if Referer is missing
     return new Response(null, {
-      status: 300,
+      status: 303,
       headers: { Location: `${referer}#footer`},
     })
   } catch (error) {
