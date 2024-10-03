@@ -20,12 +20,11 @@ interface Comment {
 const db = getFirestore(app);
 const commentsRef = db.collection("comments");
 const commentsSnapshot = await commentsRef.orderBy("createdAt", "desc").get();
-const comments = commentsSnapshot.docs.map((doc) => ({
+const comments = commentsSnapshot.docs.length > 0 ? commentsSnapshot.docs.map((doc) => ({
 	id: doc.id,
 	...doc.data(),
-	createdAt: doc.data().createdAt.toDate(),
-})) as Comment[];
-console.log(comments[0].createdAt)
+	createdAt: doc.data()?.createdAt?.toDate(),
+})) as Comment[] : [];
 
 const { title, arrow } = Astro.props;
 ---
